@@ -1,0 +1,12 @@
+<table>
+  <tbody>
+    <%- Student.first.schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.section.subject.name %></td>
+        <td><%= schedule.lesson_time %></td>
+        <td><%= schedule.section.teacher.first_and_last_name %></td>
+        <td><%= schedule.section.classroom.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

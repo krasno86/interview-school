@@ -1,0 +1,46 @@
+<table>
+  <thead>
+  <tr>
+    <th>
+      Subject
+    </th>
+    <th>
+      Week day
+    </th>
+    <th>
+      Start lesson
+    </th>
+    <th>
+      End lesson
+    </th>
+    <th>
+      Teacher
+    </th>
+    <th>
+      Classroom
+    </th>
+    <th>
+      add / remove
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+    <p class="flash-notice"><%= flash[:notice] %></p>
+    <%- @sections.each do |section| %>
+        <tr>
+          <td><%= section.subject.name %></td>
+          <td><%= section.work_days %></td>
+          <td><%= string_time_format(section.start_lesson) %></td>
+          <td><%= string_time_format(section.end_lesson) %></td>
+          <td><%= section.teacher.first_and_last_name %></td>
+          <td><%= section.classroom.name %></td>
+          <%- if @sections_from_schedule.include?(section.id) %>
+              <td><%= link_to 'Destroy', section_path(section), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%- else %>
+              <td><%= link_to 'Add', sections_path(id: section.id), method: :post %></td>
+          <% end %>
+        </tr>
+    <% end %>
+  </tbody>
+  <%= link_to 'Download Pdf', download_pdf_path(format: :pdf), class: 'themed_text', class: 'btn btn-lg btn-custom' %>
+</table>
