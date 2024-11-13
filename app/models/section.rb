@@ -5,6 +5,7 @@ class Section < ApplicationRecord
   belongs_to :teacher
   belongs_to :subject
 
+
   WORKING_DAYS = [[1, 3, 5], [2, 4], [1, 2, 3, 4, 5]].freeze
 
   validates :work_day, :duration, :start_lesson, :teacher_id, :subject_id, :classroom_id, presence: true
